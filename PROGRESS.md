@@ -1,12 +1,12 @@
 #  Progress Log
 
-## 30th Jan, 2023 
+## 30th Jan, 2024 
  - Created Repo for event driven work space 
  - Created Gateway Service infra 
  - Created Product Service infra 
  - Created Discovery Service infra
 
-## 1st Feb, 2023
+## 1st Feb, 2024
 - Completed wiring between the services
 - Booted multi instances for services
 - Boot Axon server (on Docker)
