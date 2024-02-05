@@ -1,0 +1,65 @@
+@startuml "enterpise"
+!includeurl https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+'!include ../C4_Context.puml
+
+LAYOUT_TOP_DOWN()
+'LAYOUT_AS_SKETCH()
+'LAYOUT_WITH_LEGEND()
+
+title Component diagram for Online Market Place
+
+Person(retail_customer, "Retail Customer", "A customer of Online Market Place")
+
+System_Ext(mail_system, "E-mail system", "The internal Microsoft Exchange e-mail system.")
+
+
+Enterprise_Boundary(c0, "Online Market Place") {
+
+    Container(api_gateway, "API Gateway", "Java, SpringBoot, Tomcat 7.x", "Allows customers to connect and provide entrypoint for API consumption.")
+    Container(auth_service, "Auth Server", "Java, SpringBoot, Tomcat 7.x", "Responsible for authenticating user.")
+
+    Enterprise_Boundary(c1, "Internal System") {
+    Container(product_service, "Product Service", "Java, SpringBoot, Tomcat 7.x", "Responsible for keeping product catalog.")
+    ContainerDb(nosql, "NoSQL Data Store", "MongoDB 6.1.x", "Stores product details")
+    Container(order_service, "Order Service", "Java, SpringBoot, Tomcat 7.x", "Responsible for processing and shipping of customer orders.")
+    ContainerDb(rel_db_order, "Relational Database", "MySQL 5.5.x", "Stores order related data")
+    Container(inventory_service, "Inventory Service", "Java, SpringBoot, Tomcat 7.x", "Responsible for tracking inventory information.")
+    ContainerDb(rel_db_inventory, "Relational Database", "MySQL 5.5.x", "Stores inventory related data")
+    Container(filesystem, "Kafka/RabbitMQ", "Message Broker", "Stores notifications")
+    Container(notification_service, "Notification Service", "Java, SpringBoot, Tomcat 7.x", "Responsible for sending notification to users.")
+    }
+
+    Container(eureka, "Discovery Server", "Java, SpringBoot, Tomcat 7.x", "Responsible for discovering service")
+    Container(config, "Config Server", "Java, SpringBoot, Tomcat 7.x", "Responsible for storing config")
+    Container(zipkin, "Zipkin/EKL Stack", "Java, SpringBoot, Tomcat 7.x", "Responsible for storing config")
+
+
+
+}
+
+Rel_R(retail_customer, api_gateway, "Uses online marketplace")
+Rel_U(api_gateway, auth_service, "Authenticate (Sync) Request")
+Rel_R(api_gateway, product_service, "Fetch/Update Product Details")
+Rel_U(product_service, nosql, "Store/Retrieve/Delete Product")
+Rel_R(api_gateway, order_service, "Fetch/Update Order Details")
+Rel_U(order_service, rel_db_order, "Store/Retrieve/Delete Orders")
+Rel_U(inventory_service, rel_db_inventory, "Store/Retrieve/Delete Inventory")
+
+Lay_D(product_service, rel_db_order)
+Lay_D(product_service, order_service)
+Lay_D(order_service, filesystem)
+
+
+Lay_D(notification_service, eureka)
+Lay_D(notification_service, config)
+Lay_D(notification_service, zipkin)
+
+Rel_R(order_service, inventory_service, "Fetch/Update Inventory Details")
+
+Rel(order_service, filesystem, "Async Communication")
+Rel(filesystem, notification_service, "Poll")
+
+Rel_Neighbor(notification_service, mail_system, "Sends e-mails", "SMTP")
+
+@enduml

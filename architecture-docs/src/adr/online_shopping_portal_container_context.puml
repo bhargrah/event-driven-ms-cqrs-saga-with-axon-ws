@@ -1,0 +1,38 @@
+@startuml "enterprise"
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+' uncomment the following line and comment the first to use locally
+'!include ../C4_Context.puml
+
+LAYOUT_TOP_DOWN()
+'LAYOUT_AS_SKETCH()
+'LAYOUT_WITH_LEGEND()
+
+title System Context diagram for Online Market Place
+
+Person(retail_customer, "Retail Customer", "A customer of Online Market Place")
+
+System_Ext(mail_system, "E-mail system", "The internal Microsoft Exchange e-mail system.")
+
+
+Enterprise_Boundary(c0, "Online Market Place") {
+    System(apigateway, "Gateway", "Allows customers to connect and provide entrypoint for API consumption.")
+    System(auth_service, "Authentication Server", "Responsible for authenticating user.")
+    System(product_service, "Product System", "Responsible for keeping product catalog.")
+    System(order_service, "Order System", "Responsible for processing and shipping of customer orders.")
+    System(inventory_service, "Inventory System", "Responsible for tracking inventory information.")
+    System(notification_service, "Notification System", "Responsible for sending notification to users.")
+}
+
+Rel_R(retail_customer, apigateway, "Uses online marketplace")
+Rel_D(apigateway, auth_service, "Authenticate (Sync)")
+Rel_R(apigateway, product_service, "Sync Communication")
+Rel_R(apigateway, order_service, "Sync Communication")
+
+Lay_D(product_service, order_service)
+
+Rel_R(order_service, inventory_service, "Sync Communication")
+Rel_D(order_service, notification_service, "Async Communication")
+
+Rel_Neighbor(notification_service, mail_system, "Sends e-mails", "SMTP")
+
+@enduml

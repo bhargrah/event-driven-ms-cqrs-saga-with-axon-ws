@@ -1,0 +1,18 @@
+@startuml
+!includeurl https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+' uncomment the following line and comment the first to use locally
+'!include ../C4_Context.puml
+
+LAYOUT_WITH_LEGEND()
+
+title System Context diagram for Online Market Place
+
+Person(customer, "Retail Customer", "A customer , with personal login credentials.")
+System(online_shopping_system, "Online Retail Marketplace", "Allows customers to view and place order from catalog.")
+
+System_Ext(mail_system, "E-mail system", "The internal Microsoft Exchange e-mail system.")
+
+Rel(customer, online_shopping_system, "Uses")
+Rel_Back(customer, mail_system, "Sends e-mails to")
+Rel_Neighbor(online_shopping_system, mail_system, "Sends e-mails", "SMTP")
+@enduml
