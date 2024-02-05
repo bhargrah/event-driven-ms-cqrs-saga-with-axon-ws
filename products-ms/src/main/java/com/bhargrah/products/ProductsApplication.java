@@ -1,7 +1,7 @@
 package com.bhargrah.products;
 
 
-import com.bhargrah.products.core.errorhandling.ProductsServiceEventsErrorHandler;
+import com.bhargrah.products.exceptions.ProductsServiceEventsErrorHandler;
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.config.EventProcessingConfigurer;
 import org.axonframework.eventsourcing.EventCountSnapshotTriggerDefinition;
@@ -34,7 +34,7 @@ public class ProductsApplication {
 		config.registerListenerInvocationErrorHandler("product-group", conf -> new ProductsServiceEventsErrorHandler() );
 		
 		// Another option:
-//		config.registerListenerInvocationErrorHandler(
+//		config.registerListenerInvo cationErrorHandler(
 //				"product-group", conf -> PropagatingErrorHandler.instance() );
 		
 		}

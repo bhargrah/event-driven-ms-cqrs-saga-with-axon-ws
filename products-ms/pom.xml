@@ -67,7 +67,7 @@
 		</dependency>
 		<!-- Making Core API a dependency -->
 		<dependency>
-			<groupId>com.spiegelberger</groupId>
+			<groupId>com.bhargrah</groupId>
 			<artifactId>core</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>

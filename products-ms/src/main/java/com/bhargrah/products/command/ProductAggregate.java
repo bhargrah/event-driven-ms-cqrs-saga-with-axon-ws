@@ -2,7 +2,7 @@ package com.bhargrah.products.command;
 
 import java.math.BigDecimal;
 
-import com.bhargrah.products.core.events.ProductCreatedEvent;
+import com.bhargrah.products.events.ProductCreatedEvent;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;
@@ -10,10 +10,10 @@ import org.axonframework.modelling.command.AggregateLifecycle;
 import org.axonframework.spring.stereotype.Aggregate;
 import org.springframework.beans.BeanUtils;
 
-import com.spiegelberger.estore.core.commands.CancelProductReservationCommand;
-import com.spiegelberger.estore.core.commands.ReserveProductCommand;
-import com.spiegelberger.estore.core.events.ProductReservationCancelledEvent;
-import com.spiegelberger.estore.core.events.ProductReservedEvent;
+import com.bhargrah.commands.CancelProductReservationCommand;
+import com.bhargrah.commands.ReserveProductCommand;
+import com.bhargrah.events.ProductReservationCancelledEvent;
+import com.bhargrah.events.ProductReservedEvent;
 
 // The domain object. Holds the current state of the object
 
@@ -23,14 +23,11 @@ public class ProductAggregate {
 	// This field will associate the command and the aggregate
 	@AggregateIdentifier
 	private String productId;
-	
 	private String title;
 	private BigDecimal price;
 	private Integer quantity;
 
-	public ProductAggregate() {
-		
-	}
+	public ProductAggregate() {	}
 	
 	@CommandHandler
 	public ProductAggregate(CreateProductCommand createProductCommand) {
