@@ -16,3 +16,8 @@
 * Run - docker run -d –name axonserver -p 8124:8124 -p 8124:8124 axoniq/axonserver:latest
 * Open http://localhost:8024/
 * Run for custome path - docker run -d –name axonserver -p 8024:8024 -p 8124:8124 -v "/Users/rahulbhargava/Desktop/coding_pad/event-driven-ms-cqrs-saga-with-axon-ws/docker":data "/Users/rahulbhargava/Desktop/coding_pad/event-driven-ms-cqrs-saga-with-axon-ws/docker/evetdata":eventdata "/Users/rahulbhargava/Desktop/coding_pad/event-driven-ms-cqrs-saga-with-axon-ws/docker/config":config axoniq/axonserver:latest
+* java -jar axonserver.jar
+
+== 16th Feb, 2024
+
+* Completed order services infra and wiring
