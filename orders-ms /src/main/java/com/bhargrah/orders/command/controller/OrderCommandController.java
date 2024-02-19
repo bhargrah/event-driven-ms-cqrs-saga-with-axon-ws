@@ -1,16 +1,13 @@
 package com.bhargrah.orders.command.controller;
 
+import com.bhargrah.orders.command.model.OrderStatus;
 import com.bhargrah.orders.command.CreateOrderCommand;
 import com.bhargrah.orders.command.model.CreateOrder;
-import com.bhargrah.orders.command.model.OrderStatus;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import java.util.Random;
 import java.util.UUID;
 
 @Slf4j

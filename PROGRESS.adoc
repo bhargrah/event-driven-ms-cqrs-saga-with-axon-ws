@@ -21,3 +21,9 @@
 == 16th Feb, 2024
 
 * Completed order services infra and wiring
+
+== 19th Feb, 2024
+
+* Completed user services infra and wiring
+* Saga implementation
+

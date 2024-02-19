@@ -1,6 +1,5 @@
 package com.bhargrah.orders.command;
 
-import com.bhargrah.orders.command.CreateOrderCommand;
 import com.bhargrah.orders.command.model.OrderStatus;
 import com.bhargrah.orders.events.OrderCreatedEvent;
 import org.axonframework.commandhandling.CommandHandler;
