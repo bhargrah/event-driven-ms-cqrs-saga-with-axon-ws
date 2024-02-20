@@ -1,15 +1,15 @@
 package com.bhargrah.products.queries.handler;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.bhargrah.products.repositories.entity.ProductEntity;
-import com.bhargrah.products.repositories.ProductsRepository;
 import com.bhargrah.products.queries.model.Product;
+import com.bhargrah.products.repositories.ProductsRepository;
+import com.bhargrah.products.repositories.entity.ProductEntity;
 import org.axonframework.queryhandling.QueryHandler;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class ProductsQueryHandler {

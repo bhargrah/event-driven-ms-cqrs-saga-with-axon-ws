@@ -1,9 +1,9 @@
 package com.bhargrah.products.exceptions;
 
-import java.util.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
+
+import java.util.Date;
 
 @Data
 @AllArgsConstructor

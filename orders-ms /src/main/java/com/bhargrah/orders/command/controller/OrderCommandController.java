@@ -1,6 +1,6 @@
 package com.bhargrah.orders.command.controller;
 
-import com.bhargrah.orders.command.model.OrderStatus;
+import com.bhargrah.model.OrderStatus;
 import com.bhargrah.orders.command.CreateOrderCommand;
 import com.bhargrah.orders.command.model.CreateOrder;
 import lombok.extern.slf4j.Slf4j;

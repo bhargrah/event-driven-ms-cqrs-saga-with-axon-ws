@@ -1,14 +1,13 @@
 package com.bhargrah.products.repositories.entity;
 
-import java.io.Serializable;
-import java.math.BigDecimal;
+import lombok.Data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import lombok.Data;
+import java.io.Serializable;
+import java.math.BigDecimal;
 
 @Data
 @Entity

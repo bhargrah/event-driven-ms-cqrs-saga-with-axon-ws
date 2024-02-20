@@ -1,4 +1,4 @@
-package com.bhargrah.orders.command.model;
+package com.bhargrah.model;
 
 public enum OrderStatus {
     CREATED, APPROVED, REJECTED

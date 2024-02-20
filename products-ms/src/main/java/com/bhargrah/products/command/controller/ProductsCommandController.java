@@ -1,9 +1,5 @@
 package com.bhargrah.products.command.controller;
 
-import java.util.UUID;
-
-import javax.validation.Valid;
-
 import com.bhargrah.products.command.CreateProductCommand;
 import com.bhargrah.products.command.model.CreateProduct;
 import org.axonframework.commandhandling.gateway.CommandGateway;
@@ -12,6 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
+import java.util.UUID;
 
 
 @RestController

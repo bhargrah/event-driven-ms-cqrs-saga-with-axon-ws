@@ -5,7 +5,6 @@ import com.bhargrah.payments.repositories.PaymentsRepository;
 import com.bhargrah.payments.repositories.entity.PaymentEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.eventhandling.EventHandler;
-import org.axonframework.messaging.interceptors.ExceptionHandler;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -1,6 +1,7 @@
 package com.bhargrah.products;
 
 
+import com.bhargrah.products.command.interceptors.CreateProductCommandInterceptor;
 import com.bhargrah.products.exceptions.ProductsServiceEventsErrorHandler;
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.config.EventProcessingConfigurer;
@@ -13,8 +14,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
-
-import com.bhargrah.products.command.interceptors.CreateProductCommandInterceptor;
 
 @EnableDiscoveryClient
 @SpringBootApplication

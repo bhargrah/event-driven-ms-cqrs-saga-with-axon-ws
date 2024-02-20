@@ -1,11 +1,10 @@
 package com.bhargrah.products.command;
 
-import java.math.BigDecimal;
-
-import org.axonframework.modelling.command.TargetAggregateIdentifier;
-
 import lombok.Builder;
 import lombok.Data;
+import org.axonframework.modelling.command.TargetAggregateIdentifier;
+
+import java.math.BigDecimal;
 
 @Builder
 @Data

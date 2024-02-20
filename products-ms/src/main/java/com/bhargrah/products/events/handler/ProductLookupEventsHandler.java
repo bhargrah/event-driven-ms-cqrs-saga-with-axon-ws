@@ -1,8 +1,8 @@
 package com.bhargrah.products.events.handler;
 
-import com.bhargrah.products.repositories.entity.ProductLookupEntity;
-import com.bhargrah.products.repositories.ProductLookupRepository;
 import com.bhargrah.products.events.ProductCreatedEvent;
+import com.bhargrah.products.repositories.ProductLookupRepository;
+import com.bhargrah.products.repositories.entity.ProductLookupEntity;
 import org.axonframework.config.ProcessingGroup;
 import org.axonframework.eventhandling.EventHandler;
 import org.axonframework.eventhandling.ResetHandler;

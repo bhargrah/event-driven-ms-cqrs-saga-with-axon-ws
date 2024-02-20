@@ -1,6 +1,7 @@
 package com.bhargrah.orders.command;
 
-import com.bhargrah.orders.command.model.OrderStatus;
+import com.bhargrah.events.OrderRejectEvent;
+import com.bhargrah.model.OrderStatus;
 import com.bhargrah.orders.events.OrderApprovedEvent;
 import com.bhargrah.orders.events.OrderCreatedEvent;
 import org.axonframework.commandhandling.CommandHandler;
@@ -9,8 +10,6 @@ import org.axonframework.modelling.command.AggregateIdentifier;
 import org.axonframework.modelling.command.AggregateLifecycle;
 import org.axonframework.spring.stereotype.Aggregate;
 import org.springframework.beans.BeanUtils;
-
-import javax.persistence.criteria.Order;
 
 @Aggregate
 public class OrderAggregate {
@@ -52,4 +51,16 @@ public class OrderAggregate {
     protected void on(OrderApprovedEvent orderApprovedEvent){
         this.orderStatus = orderApprovedEvent.getOrderStatus();
     }
+
+    @CommandHandler
+    protected void handle(RejectOrderCommand rejectOrderCommand) {
+        OrderRejectEvent orderRejectEvent = new OrderRejectEvent(rejectOrderCommand.getOrderId(),rejectOrderCommand.getReason());
+        AggregateLifecycle.apply(orderRejectEvent);
+    }
+
+    @EventSourcingHandler
+    protected void on(OrderRejectEvent orderRejectEvent){
+        this.orderStatus = orderRejectEvent.getOrderStatus();
+    }
+
 }

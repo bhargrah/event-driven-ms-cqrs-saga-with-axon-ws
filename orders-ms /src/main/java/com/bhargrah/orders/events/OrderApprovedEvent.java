@@ -1,7 +1,6 @@
 package com.bhargrah.orders.events;
 
-import com.bhargrah.orders.command.model.OrderStatus;
-import lombok.Data;
+import com.bhargrah.model.OrderStatus;
 import lombok.Value;
 
 @Value

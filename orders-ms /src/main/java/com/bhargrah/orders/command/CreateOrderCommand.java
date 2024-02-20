@@ -1,6 +1,6 @@
 package com.bhargrah.orders.command;
 
-import com.bhargrah.orders.command.model.OrderStatus;
+import com.bhargrah.model.OrderStatus;
 import lombok.Builder;
 import lombok.Data;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;

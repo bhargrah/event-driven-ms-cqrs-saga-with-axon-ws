@@ -1,12 +1,11 @@
 package com.bhargrah.products.command.model;
 
-import java.math.BigDecimal;
+import lombok.Data;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-
-import lombok.Data;
+import java.math.BigDecimal;
 
 @Data
 public class CreateProduct {

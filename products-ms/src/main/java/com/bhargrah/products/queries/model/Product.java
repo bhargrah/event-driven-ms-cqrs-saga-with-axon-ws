@@ -1,8 +1,8 @@
 package com.bhargrah.products.queries.model;
 
-import java.math.BigDecimal;
-
 import lombok.Data;
+
+import java.math.BigDecimal;
 
 @Data
 public class Product {

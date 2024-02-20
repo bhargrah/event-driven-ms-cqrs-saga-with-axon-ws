@@ -1,17 +1,16 @@
 package com.bhargrah.products.command.interceptors;
 
-import java.util.List;
-import java.util.function.BiFunction;
-
 import com.bhargrah.products.command.CreateProductCommand;
-import com.bhargrah.products.repositories.entity.ProductLookupEntity;
 import com.bhargrah.products.repositories.ProductLookupRepository;
+import com.bhargrah.products.repositories.entity.ProductLookupEntity;
+import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.CommandMessage;
 import org.axonframework.messaging.MessageDispatchInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import lombok.extern.slf4j.Slf4j;
+import java.util.List;
+import java.util.function.BiFunction;
 
 @Slf4j
 @Component

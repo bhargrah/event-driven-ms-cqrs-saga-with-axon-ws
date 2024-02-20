@@ -1,6 +1,6 @@
 package com.bhargrah.orders.repositories.entity;
 
-import com.bhargrah.orders.command.model.OrderStatus;
+import com.bhargrah.model.OrderStatus;
 import lombok.Data;
 
 import javax.persistence.*;

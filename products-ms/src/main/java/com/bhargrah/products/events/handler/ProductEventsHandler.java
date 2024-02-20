@@ -1,8 +1,11 @@
 package com.bhargrah.products.events.handler;
 
-import com.bhargrah.products.repositories.entity.ProductEntity;
-import com.bhargrah.products.repositories.ProductsRepository;
+import com.bhargrah.events.ProductReservationCancelledEvent;
+import com.bhargrah.events.ProductReservedEvent;
 import com.bhargrah.products.events.ProductCreatedEvent;
+import com.bhargrah.products.repositories.ProductsRepository;
+import com.bhargrah.products.repositories.entity.ProductEntity;
+import lombok.extern.slf4j.Slf4j;
 import org.axonframework.config.ProcessingGroup;
 import org.axonframework.eventhandling.EventHandler;
 import org.axonframework.eventhandling.ResetHandler;
@@ -10,11 +13,6 @@ import org.axonframework.messaging.interceptors.ExceptionHandler;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import com.bhargrah.events.ProductReservationCancelledEvent;
-import com.bhargrah.events.ProductReservedEvent;
-
-import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
@@ -61,37 +59,22 @@ public class ProductEventsHandler {
 	
 	@EventHandler
 	public void on(ProductReservedEvent productReservedEvent) {
-		
 		ProductEntity productEntity = productsRepository.findByProductId(productReservedEvent.getProductId());
-		
 		log.debug("ProductReservedEvent: Current product quantity: " + productEntity.getQuantity());
-		
 		productEntity.setQuantity(productEntity.getQuantity() - productReservedEvent.getQuantity());
-		
 		productsRepository.save(productEntity);
-		
 		log.debug("ProductReservedEvent: New product quantity: " + productEntity.getQuantity());
-		
-		log.info("productReservedEvent is called for productId: " + productReservedEvent.getProductId() + 
-				" and orderId: " + productReservedEvent.getOrderId());
+		log.info("productReservedEvent is called for productId: " + productReservedEvent.getProductId() + " and orderId: " + productReservedEvent.getOrderId());
 	}
 	
 	@EventHandler
 	public void on(ProductReservationCancelledEvent  productReservationCancelledEvent) {
-		
 		ProductEntity currentlyStoredProduct = productsRepository.findByProductId(productReservationCancelledEvent.getProductId());
-		
 		log.debug("ProductReservationCancelledEvent: Current product quantity: " + currentlyStoredProduct.getQuantity());
-		
 		int newQuantity = productReservationCancelledEvent.getQuantity() + currentlyStoredProduct.getQuantity();
-		
 		currentlyStoredProduct.setQuantity(newQuantity);
-		
 		productsRepository.save(currentlyStoredProduct);
-		
-		log.debug("ProductReservationCancelledEvent: New product quantity: " +
-				currentlyStoredProduct.getQuantity());
-		
+		log.debug("ProductReservationCancelledEvent: New product quantity: " + currentlyStoredProduct.getQuantity());
 	}
 	
 	@ResetHandler
