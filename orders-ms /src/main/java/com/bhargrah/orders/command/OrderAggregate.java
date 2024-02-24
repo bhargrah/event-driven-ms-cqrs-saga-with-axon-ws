@@ -22,7 +22,8 @@ public class OrderAggregate {
     private String addressId;
     private OrderStatus orderStatus;
 
-    public OrderAggregate() { }
+    public OrderAggregate() {
+    }
 
     @CommandHandler
     public OrderAggregate(CreateOrderCommand createOrderCommand) {
@@ -32,34 +33,34 @@ public class OrderAggregate {
     }
 
     @EventSourcingHandler
-    public void on(OrderCreatedEvent orderCreatedEvent){
-          this.orderId = orderCreatedEvent.getOrderId();
-          this.productId = orderCreatedEvent.getProductId();
-          this.userId = orderCreatedEvent.getUserId();
-          this.quantity = orderCreatedEvent.getQuantity();
-          this.addressId = orderCreatedEvent.getAddressId();
-          this.orderStatus = orderCreatedEvent.getOrderStatus();
+    public void on(OrderCreatedEvent orderCreatedEvent) {
+        this.orderId = orderCreatedEvent.getOrderId();
+        this.productId = orderCreatedEvent.getProductId();
+        this.userId = orderCreatedEvent.getUserId();
+        this.quantity = orderCreatedEvent.getQuantity();
+        this.addressId = orderCreatedEvent.getAddressId();
+        this.orderStatus = orderCreatedEvent.getOrderStatus();
     }
 
     @CommandHandler
-    public void handle(ApproveOrderCommand approveOrderCommand){
+    public void handle(ApproveOrderCommand approveOrderCommand) {
         OrderApprovedEvent orderApprovedEvent = new OrderApprovedEvent(approveOrderCommand.getOrderId());
         AggregateLifecycle.apply(orderApprovedEvent);
     }
 
     @EventSourcingHandler
-    protected void on(OrderApprovedEvent orderApprovedEvent){
+    protected void on(OrderApprovedEvent orderApprovedEvent) {
         this.orderStatus = orderApprovedEvent.getOrderStatus();
     }
 
     @CommandHandler
     protected void handle(RejectOrderCommand rejectOrderCommand) {
-        OrderRejectEvent orderRejectEvent = new OrderRejectEvent(rejectOrderCommand.getOrderId(),rejectOrderCommand.getReason());
+        OrderRejectEvent orderRejectEvent = new OrderRejectEvent(rejectOrderCommand.getOrderId(), rejectOrderCommand.getReason());
         AggregateLifecycle.apply(orderRejectEvent);
     }
 
     @EventSourcingHandler
-    protected void on(OrderRejectEvent orderRejectEvent){
+    protected void on(OrderRejectEvent orderRejectEvent) {
         this.orderStatus = orderRejectEvent.getOrderStatus();
     }
 

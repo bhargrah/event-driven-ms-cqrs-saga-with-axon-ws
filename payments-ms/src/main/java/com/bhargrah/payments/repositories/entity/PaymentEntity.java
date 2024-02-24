@@ -14,10 +14,9 @@ import java.io.Serializable;
 public class PaymentEntity implements Serializable {
 
     private static final long serialVersionUID = 5059324003983825666L;
-
-    @Id
-    private String paymentId;
     @Column
     public String orderId;
+    @Id
+    private String paymentId;
 
 }

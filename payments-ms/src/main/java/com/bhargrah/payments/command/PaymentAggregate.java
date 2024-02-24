@@ -13,34 +13,34 @@ import org.axonframework.spring.stereotype.Aggregate;
 @Aggregate
 public class PaymentAggregate {
 
-    public PaymentAggregate() { }
-
     @AggregateIdentifier
     private String paymentId;
     private String orderId;
+    public PaymentAggregate() {
+    }
 
     @CommandHandler
     public PaymentAggregate(ProcessPaymentCommand processPaymentCommand) {
 
-        if(processPaymentCommand.getPaymentDetails() == null) {
+        if (processPaymentCommand.getPaymentDetails() == null) {
             throw new IllegalArgumentException("Missing payment details");
         }
 
-        if(processPaymentCommand.getOrderId() == null) {
+        if (processPaymentCommand.getOrderId() == null) {
             throw new IllegalArgumentException("Missing orderId");
         }
 
-        if(processPaymentCommand.getPaymentId() == null) {
+        if (processPaymentCommand.getPaymentId() == null) {
             throw new IllegalArgumentException("Missing paymentId");
         }
 
         PaymentProcessedEvent paymentProcessedEvent = new PaymentProcessedEvent(processPaymentCommand.getOrderId(), processPaymentCommand.getPaymentId());
-        log.info("Handling PaymentProcessedEvent with orderId : "+processPaymentCommand.getOrderId());
+        log.info("Handling PaymentProcessedEvent with orderId : " + processPaymentCommand.getOrderId());
         AggregateLifecycle.apply(paymentProcessedEvent);
     }
 
     @EventSourcingHandler
-    public void on(PaymentProcessedEvent paymentProcessedEvent){
+    public void on(PaymentProcessedEvent paymentProcessedEvent) {
         this.paymentId = paymentProcessedEvent.getPaymentId();
         this.orderId = paymentProcessedEvent.getOrderId();
     }
