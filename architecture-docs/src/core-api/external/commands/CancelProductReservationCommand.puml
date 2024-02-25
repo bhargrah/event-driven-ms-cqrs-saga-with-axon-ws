@@ -1,0 +1,9 @@
+@startjson
+{
+  "productId": "fdc14da7-c499-4ed9-854e-162649129725",
+  "quantity": 10,
+  "orderId": "7f4eae32-7375-46e2-a662-5a4c7ef313c4",
+  "userId": "bhargrah",
+  "reason": "Insufficient number of items in stock"
+}
+@endjson

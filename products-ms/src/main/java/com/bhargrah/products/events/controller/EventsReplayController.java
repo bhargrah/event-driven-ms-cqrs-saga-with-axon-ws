@@ -15,11 +15,9 @@ import java.util.Optional;
 @RequestMapping("/management")
 public class EventsReplayController {
 
-	
 	@Autowired
 	private EventProcessingConfiguration eventProcessingConfiguration;
-	
-	
+
 	@PostMapping("/eventProcessor/{processorName}/reset")
 	public ResponseEntity<String> replayEvents(@PathVariable String processorName) {
 		
@@ -31,13 +29,12 @@ public class EventsReplayController {
 				eventProcessor.resetTokens();
 				eventProcessor.start();
 				
-				return ResponseEntity.ok().body(String.format(
-						"The eventprocessor with name [%s] has been reset", processorName));
+				return ResponseEntity.ok().body(String.format("The event processor with name [%s] has been reset", processorName));
 			}
 			else {
 				return ResponseEntity.badRequest()
 					.body(String.format(
-							"The eventprocessor with name [%s] is not a tracking event processor. "
+							"The event processor with name [%s] is not a tracking event processor. "
 							+ "Only Tracking event processor is supported.", processorName));
 			}
 	}

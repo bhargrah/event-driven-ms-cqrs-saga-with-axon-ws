@@ -76,10 +76,10 @@ public class ProductEventsHandler {
 		productsRepository.save(currentlyStoredProduct);
 		log.debug("ProductReservationCancelledEvent: New product quantity: " + currentlyStoredProduct.getQuantity());
 	}
-	
+
+	// Help in clearing data from database before replaying events
 	@ResetHandler
 	public void reset() {
-		
 		productsRepository.deleteAll();
 	}
 }

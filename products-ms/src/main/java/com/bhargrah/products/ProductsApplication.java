@@ -31,12 +31,7 @@ public class ProductsApplication {
 	@Autowired
 	public void configure(EventProcessingConfigurer config) {
 		config.registerListenerInvocationErrorHandler("product-group", conf -> new ProductsServiceEventsErrorHandler() );
-		
-		// Another option:
-//		config.registerListenerInvo cationErrorHandler(
-//				"product-group", conf -> PropagatingErrorHandler.instance() );
-		
-		}
+	}
 	
 	@Bean(name = "productSnapshotTriggerDefinition")
 	public SnapshotTriggerDefinition productSnapshotTriggerDefinition(Snapshotter snapshotter) {

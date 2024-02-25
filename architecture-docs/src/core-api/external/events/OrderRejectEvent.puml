@@ -1,0 +1,7 @@
+@startjson
+{
+  "orderId": "7f4eae32-7375-46e2-a662-5a4c7ef313c4",
+  "reason": "Low quantity",
+  "orderStatus" : "REJECTED"
+}
+@endjson

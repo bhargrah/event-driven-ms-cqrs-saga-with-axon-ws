@@ -1,0 +1,13 @@
+@startjson
+{
+  "paymentId": "fdc14da7-c499-4ed9-854e-162649129725",
+  "orderId": "7f4eae32-7375-46e2-a662-5a4c7ef313c4",
+  "paymentDetails": {
+      "name": "Rahul",
+      "cardNumber": "5678-3456-5678-9876",
+      "validUntilMonth": "09",
+      "validUntilYear": "3100",
+      "cvv": "100"
+    }
+}
+@endjson

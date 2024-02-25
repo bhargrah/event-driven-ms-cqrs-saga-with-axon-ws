@@ -68,7 +68,10 @@ public class OrderSaga {
             @Override
             public void onResult(CommandMessage<? extends ReserveProductCommand> commandMessage, CommandResultMessage<?> commandResultMessage) {
                 if (commandResultMessage.isExceptional()) {
-                    //TODO: Start compensating transaction
+                    //Start compensating transaction
+                    RejectOrderCommand rejectOrderCommand = new RejectOrderCommand(orderCreatedEvent.getOrderId(),
+                            commandResultMessage.exceptionResult().getMessage());
+                    commandGateway.send(rejectOrderCommand);
                 }
             }
         });
