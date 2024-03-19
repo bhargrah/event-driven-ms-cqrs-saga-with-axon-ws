@@ -62,7 +62,7 @@ public class OrderSaga {
                 .userId(orderCreatedEvent.getUserId())
                 .build();
 
-        log.info("OrderCreatedEvent handled for orderId : " + orderCreatedEvent.getOrderId() + "and productId : " + orderCreatedEvent.getProductId());
+        log.info("OrderCreatedEvent handled for orderId : " + orderCreatedEvent.getOrderId() + " and productId : " + orderCreatedEvent.getProductId());
 
         commandGateway.send(reserveProductCommand, new CommandCallback<ReserveProductCommand, Object>() {
             @Override
@@ -79,7 +79,7 @@ public class OrderSaga {
 
     @SagaEventHandler(associationProperty = "orderId")
     public void handle(ProductReservedEvent productReservedEvent) {
-        log.info("ProductReservedEvent handled for orderId : " + productReservedEvent.getOrderId() + "and productId : " + productReservedEvent.getProductId());
+        log.info("ProductReservedEvent handled for orderId : " + productReservedEvent.getOrderId() + " and productId : " + productReservedEvent.getProductId());
 
         FetchUserPaymentDetailsQuery fetchUserPaymentDetailsQuery = new FetchUserPaymentDetailsQuery(productReservedEvent.getUserId());
 
